@@ -34,6 +34,9 @@ public class RayoCamara : MonoBehaviour
         }
     }
 
+    //Para la camara en modo ratón--------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
+
     void PanCamara()
     {
         if (Input.GetMouseButtonDown(0))
@@ -51,6 +54,9 @@ public class RayoCamara : MonoBehaviour
             transform.position += Distancia * Time.deltaTime;
         }
     }
+
+    //Para la camara en modo normal--------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------
 
     void MovCamara()
     {
@@ -83,18 +89,4 @@ public class RayoCamara : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, NuevaPosicion, Time.deltaTime * tiempo);
     }
-
-    //*
-    // if (Input.GetMouseButtonDown(0))
-    //    {
-    //       Ray rayoCamara = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //   
-    //       RaycastHit hit;
-    //
-    //        if(Physics.Raycast(rayoCamara, out hit) && hit.collider.gameObject.tag == "Enemigo")
-    //        {
-    //            Destroy(hit.collider.gameObject, 1f);
-    //        }
-    //    }
-
 }
