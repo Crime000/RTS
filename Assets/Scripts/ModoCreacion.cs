@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ModoCreacion : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ModoCreacion : MonoBehaviour
     public GameObject prefabCubo;
     public GameObject prefabCilindro;
     public GameObject prefabEsfera;
+    public TMP_Text Conteo;
 
 
     void Update()
@@ -44,6 +46,8 @@ public class ModoCreacion : MonoBehaviour
                     {
                         Vector3 impacto = new Vector3(hit.point.x, 0.5f, hit.point.z);
                         Instantiate(prefabCubo, impacto, Quaternion.identity);
+                        GameObject[] lista = GameObject.FindGameObjectsWithTag("Cubo");
+                        Conteo.text = lista.Length.ToString();
                     }
                    
                }
@@ -70,6 +74,8 @@ public class ModoCreacion : MonoBehaviour
                     {
                         Vector3 impacto = new Vector3(hit.point.x, 1f, hit.point.z);
                         Instantiate(prefabCilindro, impacto, Quaternion.identity);
+                        GameObject[] lista = GameObject.FindGameObjectsWithTag("Cilindro");
+                        Conteo.text = lista.Length.ToString();
                     }
 
                 }
@@ -96,6 +102,8 @@ public class ModoCreacion : MonoBehaviour
                     {
                         Vector3 impacto = new Vector3(hit.point.x, 0.5f, hit.point.z);
                         Instantiate(prefabEsfera, impacto, Quaternion.identity);
+                        GameObject[] lista = GameObject.FindGameObjectsWithTag("Esfera");
+                        Conteo.text = lista.Length.ToString();
                     }
 
                 }

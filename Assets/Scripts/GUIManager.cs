@@ -9,8 +9,10 @@ public class GUIManager : MonoBehaviour
     public GameObject Menu;
     public GameObject CreacionMenu;
     public GameObject Pulsac;
+    public GameObject ModoEliminar;
     public RayoCamara camara;
     public bool creadorActivo = false;
+    public bool eliminadorActivo = false;
     public float PrefabAInstanciar = 1;
 
 
@@ -19,6 +21,7 @@ public class GUIManager : MonoBehaviour
     void Start()
     {
         CreacionMenu.SetActive(false);
+        ModoEliminar.SetActive(false);
         Menu.SetActive(true);
         Pulsac.SetActive(false);
         Time.timeScale = 0;
@@ -31,6 +34,11 @@ public class GUIManager : MonoBehaviour
         if (Input.GetKey("escape"))
         {
             EventSystem.current.SetSelectedGameObject(null);
+            CreacionMenu.SetActive(false);
+            ModoEliminar.SetActive(false);
+            Pulsac.SetActive(false);
+            creadorActivo = false;
+            eliminadorActivo = false;
             camara.modoRaton = false;
             Menu.SetActive(true);
             Time.timeScale = 0;
@@ -62,6 +70,16 @@ public class GUIManager : MonoBehaviour
         CreacionMenu.SetActive(true);
     }
 
+    // Opción del Modo Eliminación.............................................................................................................................
+
+    public void Eliminacion()
+    {
+        Menu.SetActive(false);
+        Time.timeScale = 1;
+        ModoEliminar.SetActive(true);
+        eliminadorActivo = true;
+    }
+
     // Opciones de Prefabs.............................................................................................................................
 
     public void Cubo()
@@ -88,6 +106,35 @@ public class GUIManager : MonoBehaviour
         creadorActivo = true;
     }
 
+    // Opciones de Eliminaciones.............................................................................................................................
+
+    public void EliminarCubo()
+    {
+        GameObject[] lista = GameObject.FindGameObjectsWithTag("Cubo");
+        foreach(var objetos in lista)
+        {
+            Destroy(objetos);
+        }
+    }
+
+    public void EliminarCilindro()
+    {
+        GameObject[] lista = GameObject.FindGameObjectsWithTag("Cilindro");
+        foreach (var objetos in lista)
+        {
+            Destroy(objetos);
+        }
+    }
+
+    public void EliminarEsfera()
+    {
+        GameObject[] lista = GameObject.FindGameObjectsWithTag("Esfera");
+        foreach (var objetos in lista)
+        {
+            Destroy(objetos);
+        }
+    }
+
     // Opción de Volver al modo Selector de Prefabs.............................................................................................................................
 
     public void PulsaC()
@@ -105,7 +152,9 @@ public class GUIManager : MonoBehaviour
     public void Volver()
     {
         CreacionMenu.SetActive(false);
+        ModoEliminar.SetActive(false);
         creadorActivo = false;
+        eliminadorActivo = false;
         Menu.SetActive(true);
         Time.timeScale = 0;
     }
